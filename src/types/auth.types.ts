@@ -6,7 +6,7 @@ export interface Request extends ExpressRequest {
     _id: string;
     name: string;
     email: string;
-    role: string;
+    role: "viewer" | "analyst" | "admin";
     status: string;
   };
 }

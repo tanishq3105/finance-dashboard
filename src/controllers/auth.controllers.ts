@@ -2,10 +2,10 @@ import User from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { generateAccessAndRefreshTokens } from "../utils/tokenGenerator.js";
-import { loginSchema, registerSchema } from "../validators/user.validator.js";
+import { loginSchema, registerSchema } from "../validators/auth.validator.js";
 import { CookieOptions, Response } from "express";
 import { Request } from "../types/auth.types.js";
-class UserController {
+class AuthController {
   async register(req: Request, res: Response) {
     const payload = req.body;
     //validate payload
@@ -13,14 +13,14 @@ class UserController {
     if (!parsedPayload.success) {
       throw new ApiError(400, parsedPayload.error.message);
     }
-    const { name, email, password, role } = parsedPayload.data;
+    const { name, email, password } = parsedPayload.data;
     //check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new ApiError(409, "User with this email already exists");
     }
     //create user
-    const user = await User.create({ name, email, password, role });
+    const user = await User.create({ name, email, password });
     if (!user) {
       throw new ApiError(500, "Failed to create user");
     }
@@ -134,4 +134,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new AuthController();

@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema<IUser, IUserModel>(
     role: {
       type: String,
       enum: ["viewer", "analyst", "admin"],
+      default: "viewer",
       required: [true, "Role is required"],
       trim: true,
     },

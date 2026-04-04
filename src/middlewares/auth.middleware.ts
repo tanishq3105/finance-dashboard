@@ -7,7 +7,6 @@ import { ApiError } from "../utils/apiError.js";
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.cookies.accessToken;
-  console.log(authHeader);
   if (!authHeader) {
     throw new ApiError(401, "Unauthorized");
   }
