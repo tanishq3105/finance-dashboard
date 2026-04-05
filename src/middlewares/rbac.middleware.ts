@@ -12,6 +12,7 @@ const permissions = {
     "dashboard:read",
     "dashboard:insights",
     "users:manage",
+    "audit:read",
   ],
 };
 

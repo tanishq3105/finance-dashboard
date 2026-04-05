@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authMiddleware from "../middlewares/auth.middleware.js";
 import permission from "../middlewares/rbac.middleware.js";
+import { auditMiddleware } from "../middlewares/audit.middleware.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import dashboardController from "../controllers/dashboard.controller.js";
 
@@ -10,6 +11,7 @@ router
   .get(
     authMiddleware,
     permission("dashboard:read"),
+    auditMiddleware("dashboard"),
     asyncHandler(dashboardController.getDashboardSummary)
   );
 router
@@ -17,6 +19,7 @@ router
   .get(
     authMiddleware,
     permission("dashboard:insights"),
+    auditMiddleware("dashboard"),
     asyncHandler(dashboardController.getDashboardTotalsByCategory)
   );
 router
@@ -24,6 +27,7 @@ router
   .get(
     authMiddleware,
     permission("dashboard:insights"),
+    auditMiddleware("dashboard"),
     asyncHandler(dashboardController.getDashboardTrends)
   );
 router
@@ -31,6 +35,7 @@ router
   .get(
     authMiddleware,
     permission("dashboard:read"),
+    auditMiddleware("dashboard"),
     asyncHandler(dashboardController.getRecentRecords)
   );
 router
@@ -38,6 +43,7 @@ router
   .get(
     authMiddleware,
     permission("dashboard:insights"),
+    auditMiddleware("dashboard"),
     asyncHandler(dashboardController.getTopCategories)
   );
 
