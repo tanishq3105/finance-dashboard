@@ -86,6 +86,13 @@ Create a `.env` file in the project root with the following keys:
 
 ---
 
+## API Documentation
+
+Interactive API documentation is available at:
+https://documenter.getpostman.com/view/xxxxxxx/finance-dashboard
+
+---
+
 ## Authentication
 
 Authentication uses **JWT tokens stored in httpOnly cookies** — not Authorization headers. This protects tokens from XSS attacks.
