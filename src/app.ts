@@ -5,7 +5,7 @@ import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import recordRoutes from "./routes/records.routes.js";
 import dashbordRoutes from "./routes/dashboard.routes.js";
-import auditRoutes from "./routes/audit.routs.js";
+import auditRoutes from "./routes/audit.routes.js";
 const app = express();
 app.use(
   cors({
