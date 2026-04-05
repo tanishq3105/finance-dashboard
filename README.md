@@ -86,6 +86,13 @@ Create a `.env` file in the project root with the following keys:
 
 ---
 
+## API Documentation
+
+Interactive API documentation is available at:
+https://documenter.getpostman.com/view/xxxxxxx/finance-dashboard
+
+---
+
 ## Authentication
 
 Authentication uses **JWT tokens stored in httpOnly cookies** — not Authorization headers. This protects tokens from XSS attacks.
@@ -95,6 +102,19 @@ On login or register, two cookies are set:
 - `refreshToken` — long-lived, stored in the database for rotation
 
 All protected routes require a valid `accessToken` cookie. The auth middleware verifies the token and attaches the decoded user (`_id`, `name`, `email`, `role`, `status`) to `req.user`.
+
+---
+## Demo Access
+
+A seeded admin account is available for testing:
+
+| Field | Value |
+|---|---|
+| Email | `DEMO_ADMIN_EMAIL` (see `.env.example`) |
+| Password | `DEMO_ADMIN_PASSWORD` (see `.env.example`) |
+
+Login via `POST /api/v1/auth/login` to get your auth cookies,
+then all admin-protected endpoints are accessible.
 
 ---
 
