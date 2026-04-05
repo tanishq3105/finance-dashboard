@@ -97,6 +97,19 @@ On login or register, two cookies are set:
 All protected routes require a valid `accessToken` cookie. The auth middleware verifies the token and attaches the decoded user (`_id`, `name`, `email`, `role`, `status`) to `req.user`.
 
 ---
+## Demo Access
+
+A seeded admin account is available for testing:
+
+| Field | Value |
+|---|---|
+| Email | `DEMO_ADMIN_EMAIL` (see `.env.example`) |
+| Password | `DEMO_ADMIN_PASSWORD` (see `.env.example`) |
+
+Login via `POST /api/v1/auth/login` to get your auth cookies,
+then all admin-protected endpoints are accessible.
+
+---
 
 ## Role-Based Access Control
 
