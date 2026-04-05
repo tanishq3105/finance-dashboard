@@ -9,6 +9,6 @@ export const createRecordSchema = z.object({
     "type must be either 'income' or 'expense'"
   ),
   category: z.string("category is required"),
-  date: z.date("date is required"),
+  date: z.coerce.date("date is required"),
   notes: z.string().optional(),
 });

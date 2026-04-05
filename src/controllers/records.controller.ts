@@ -18,7 +18,6 @@ class RecordsController {
     } = req.query;
 
     const filter: Record<string, unknown> = {
-      created_by: req.user?._id,
       is_deleted: false,
     };
 
@@ -73,7 +72,7 @@ class RecordsController {
   async getRecordById(req: Request, res: Response) {
     const record = await Record.findOne({
       _id: req.params.id,
-      user: req.user?._id,
+      created_by: req.user?._id,
     });
     if (!record) {
       res.status(404).json(new ApiResponse(404, null, "Record not found"));

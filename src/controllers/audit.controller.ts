@@ -19,7 +19,7 @@ class AuditController {
     const userId = req.params.userId;
     const limit = Math.max(Number(req.query.limit) || 20, 1);
     const page = Math.max(Number(req.query.page) || 1, 1);
-    const logs = await AuditLog.find({ user: userId })
+    const logs = await AuditLog.find({ user_id: userId })
       .sort({ timestamp: -1 })
       .skip((page - 1) * limit)
       .limit(limit);

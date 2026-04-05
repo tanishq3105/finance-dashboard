@@ -23,4 +23,19 @@ app.use("/api/v1/records", recordRoutes);
 app.use("/api/v1/dashboard", dashbordRoutes);
 app.use("/api/v1/audit", auditRoutes);
 
+app.use(
+  (
+    err: any,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode).json({
+      success: false,
+      message: err.message || "Internal server error",
+      errors: err.errors || [],
+    });
+  }
+);
 export default app;
