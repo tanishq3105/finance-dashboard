@@ -4,7 +4,6 @@ import { env } from "../validators/env.validator.js";
 import { Request } from "../types/auth.types.js";
 import { IjwtPayload } from "../types/jwt.types.js";
 import { ApiError } from "../utils/apiError.js";
-import { error } from "console";
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -18,9 +17,9 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
       env.ACCESS_TOKEN_SECRET
     ) as IjwtPayload;
     req.user = decoded;
-    next(error);
+    next();
   } catch (error) {
-    throw new ApiError(401, "Unauthorized");
+    next(new ApiError(401, "Unauthorized"));
   }
 };
 

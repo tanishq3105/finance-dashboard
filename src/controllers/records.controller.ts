@@ -62,10 +62,14 @@ class RecordsController {
       .sort({ [finalSortField]: sortDirection })
       .skip((pageNumber - 1) * limitNumber)
       .limit(limitNumber);
-
-    res
-      .status(200)
-      .json(new ApiResponse(200, records, "Records retrieved successfully"));
+    const total = await Record.countDocuments(filter);
+    res.json(
+      new ApiResponse(
+        200,
+        { records, total, page: pageNumber, limit: limitNumber },
+        "Records retrieved successfully"
+      )
+    );
     return;
   }
 
