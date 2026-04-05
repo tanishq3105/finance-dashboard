@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import recordRoutes from "./routes/records.routes.js";
 import dashbordRoutes from "./routes/dashboard.routes.js";
+import auditRoutes from "./routes/audit.routs.js";
 const app = express();
 app.use(
   cors({
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/records", recordRoutes);
-app.use("api/v1/dashboard", dashbordRoutes);
+app.use("/api/v1/dashboard", dashbordRoutes);
+app.use("/api/v1/audit", auditRoutes);
 
 export default app;
